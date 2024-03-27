@@ -14,6 +14,11 @@ public class Scoreing_system : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        countscore();
+    }
+
+    public void countscore()
+    {
         if (countScore)
         {
             ObstacleMovement obs = GetComponent<ObstacleMovement>();
@@ -24,7 +29,6 @@ public class Scoreing_system : MonoBehaviour
             }
         }
     }
-
     public void stopcount()
     {
         countScore = false;

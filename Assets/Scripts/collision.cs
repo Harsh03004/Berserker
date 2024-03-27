@@ -1,104 +1,74 @@
-
 using UnityEngine;
 
-
-public class collision : MonoBehaviour
+public class Collision : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject charmodel;
-    public GameObject[] obstacles;
-    public Health pHealth;
-    public int damage;
-    [SerializeField] Animator anim;
-    
+    public  Health pHealth;
+
+    private void Start()
+    {
+     
+        if (pHealth == null)
+        {
+            Debug.LogError("Player object does not have Health component.");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider belongs to an obstacle with the "hurdle" tag
         if (other.CompareTag("hurdle"))
         {
-            Debug.Log("Collision has occured");
-            // Check if the obstacle has the ObstacleMovement component
-            obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            // Stop the movement of obstacles
+            Debug.Log("Collided with an obstacle");
 
-            // Check if the Scoreing_system component exists on the Scoreing_system GameObject
-            Scoreing_system scs = FindObjectOfType<Scoreing_system>();
-          
-
-            SpawnManager sw = FindObjectOfType<SpawnManager>();
-            if (obstacles.Length != 0)
+            // Decrease player's health
+            if (pHealth != null)
             {
-                // Stop the movement of the obstacle
-                pHealth.health -= damage;
-                if(pHealth.health <= 0)
-                {
-                    anim.SetTrigger("Death");
-                    Debug.Log("Stop ground movement");
-                    foreach (GameObject go in obstacles)
-                    {
-                        go.GetComponent<ObstacleMovement>().StopMovement();
-                    }
-                    sw.stopspawn();
-
-                    // Check if the Scoreing_system component was found
-                    if (scs != null)
-                    {
-                        Debug.Log("Counting Stop");
-                        scs.stopcount();
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Scoreing_system component not found.");
-                    }
-                }
-                
+                pHealth.TakeDamage(20f);
             }
             else
             {
-                Debug.LogError("ObstacleMovement component not found on the collided object.");
+                Debug.LogError("Player's health script reference is null.");
             }
-        }
-        if (other.CompareTag("Enemy"))
-        {
-            Debug.Log("Collision has occured");
-            // Check if the obstacle has the ObstacleMovement component
-            obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 
-            // Check if the Scoreing_system component exists on the Scoreing_system GameObject
-            Scoreing_system scs = FindObjectOfType<Scoreing_system>();
+            // Stop obstacle movement and count score accordingly
 
-
-            SpawnManager sw = FindObjectOfType<SpawnManager>();
-            if (obstacles.Length != 0)
+            GameObject[] Ground = GameObject.FindGameObjectsWithTag("Obstacle");
+            foreach (GameObject go in Ground)
             {
-                // Stop the movement of the obstacle
-                pHealth.health -= damage;
-                if (pHealth.health <= 0)
+                if (Ground != null)
                 {
-                    anim.SetTrigger("Death");
-                    Debug.Log("Stop ground movement");
-                    foreach (GameObject go in obstacles)
+                    if (pHealth.CurrentHealth > 0)
                     {
-                        go.GetComponent<ObstacleMovement>().StopMovement();
+                        go.GetComponent<ObstacleMovement>().Move();
                     }
-                    sw.stopspawn();
-
-                    // Check if the Scoreing_system component was found
-                    if (scs != null)
+                    else if(pHealth.CurrentHealth <=0)
                     {
-                        Debug.Log("Counting Stop");
-                        scs.stopcount();
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Scoreing_system component not found.");
+                        go.GetComponent <ObstacleMovement>().StopMovement();
                     }
                 }
+                else
+                {
+                    Debug.LogWarning("ObstacleMovement component not found on the obstacle GameObject.");
+                }
+            }
 
+            Scoreing_system scs = FindObjectOfType<Scoreing_system>();
+            if (scs != null)
+            {
+                if (pHealth.CurrentHealth <= 0)
+                {
+                    scs.stopcount();
+                }
+                else
+                {
+                    scs.countscore();
+                }
             }
             else
             {
-                Debug.LogError("ObstacleMovement component not found on the collided object.");
+                Debug.LogWarning("Scoreing_system component not found.");
             }
         }
     }
+    
 }

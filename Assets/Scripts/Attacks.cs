@@ -6,7 +6,9 @@ public class Attacks : MonoBehaviour
     [SerializeField] Animator anim;
     public Button button;
     public bool isAttacking = false;
-    public GameObject enemyPrefab; // Prefab of the enemy
+    public LayerMask enemy_layers;
+    public Transform Attack_point;
+    public float attack_range = 0.5f;
 
     private void Start()
     {
@@ -16,45 +18,29 @@ public class Attacks : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             attack();
         }
     }
+
     public void attack()
     {
-        if (!isAttacking && anim != null && enemyPrefab != null)
-        {
-            anim.SetBool("Attack", true);
-            isAttacking = true; // Set isAttacking to true to prevent multiple attacks before animation completes
-            anim.SetBool("attack", true);
-            // Instantiate the enemyPrefab and store the instance
-            GameObject instantiatedEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            if (instantiatedEnemy != null)
-            {
-                Debug.Log("Enemy prefab instantiated");
-                // You may want to handle the instantiatedEnemy reference for further logic
+        Debug.Log("Attack the enemy");
+        //attack animation
+        anim.SetTrigger("Attack");
 
-                // Delay destroying the enemy to allow for attack animation
-                Destroy(instantiatedEnemy, 0.5f); // Adjust the delay as needed
-            }
-            else
-            {
-                Debug.Log("Failed to instantiate enemy prefab");
-            }
-
-            Invoke("ResetAttack", 0.1f);
-        }
+        //attack the enemy
+        Collider[] hit_enemy = Physics.OverlapSphere(Attack_point.position, attack_range, enemy_layers);
+        
     }
 
-    // This method can be called when the attack animation is completed
-    public void ResetAttack()
+    private void OnDrawGizmosSelected()
     {
-        if (anim != null)
+        if (Attack_point == null)
         {
-            anim.SetBool("Attack", false);
-            anim.SetBool("attack", false);
-            isAttacking = false; // Reset isAttacking to allow for the next attack
+            return;
         }
+        Gizmos.DrawWireSphere(Attack_point.position, attack_range);
     }
 }
