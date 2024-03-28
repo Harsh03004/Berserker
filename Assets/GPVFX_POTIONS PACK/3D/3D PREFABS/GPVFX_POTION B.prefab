@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4008155813552842}
   - component: {fileID: 8072372228744617406}
   - component: {fileID: 7738168312465099377}
-  - component: {fileID: 80203763388433626}
   m_Layer: 0
   m_Name: GPVFX_POTION B
   m_TagString: heal
@@ -85,27 +84,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &80203763388433626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280056767771472}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1388567134444530
 GameObject:
   m_ObjectHideFlags: 0
