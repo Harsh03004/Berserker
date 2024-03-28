@@ -6,8 +6,8 @@ public class Health : MonoBehaviour
     public float MaxHealth { get; private set; } = 100f;
     public float CurrentHealth { get; private set; }
 
-    [SerializeField] private Image healthBar;
-    [SerializeField] private Animator animator;
+    [SerializeField] public Image healthBar;
+    [SerializeField] public Animator animator;
 
     private void Start()
     {
@@ -23,12 +23,17 @@ public class Health : MonoBehaviour
         {
             Die();
         }
-        else
-        {
-            animator.SetTrigger("Flinch"); // Trigger flinch animation
-        }
     }
 
+    public void heal(float amount)
+    {
+        Debug.Log("healing");
+        CurrentHealth += amount;
+        if (CurrentHealth >= 100)
+        {
+            Debug.Log("Health is already at max");
+        }
+    }
     private void Die()
     {
         animator.SetTrigger("Death");
@@ -37,6 +42,15 @@ public class Health : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.fillAmount = Mathf.Clamp01(CurrentHealth / MaxHealth);
+        // Check if healthBar is assigned before updating the health bar
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = Mathf.Clamp01(CurrentHealth / MaxHealth);
+        }
+        else
+        {
+            Debug.LogError("Health bar image is not assigned in the inspector.");
+        }
     }
+
 }

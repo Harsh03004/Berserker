@@ -3,6 +3,7 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
     public  Health pHealth;
+    [SerializeField] Animator anim;
 
     private void Start()
     {
@@ -20,10 +21,13 @@ public class Collision : MonoBehaviour
             // Stop the movement of obstacles
             Debug.Log("Collided with an obstacle");
 
+            anim.SetTrigger("Flinch");
+            Debug.Log("Playing Flinch animation");
             // Decrease player's health
             if (pHealth != null)
             {
                 pHealth.TakeDamage(20f);
+                Debug.Log(pHealth.CurrentHealth);
             }
             else
             {

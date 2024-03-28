@@ -3,41 +3,34 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] Animator animator;
-    private Health pHealth;
+    [SerializeField] Transform playerDetectionPoint; // Point from which the enemy detects the player
+    [SerializeField] float detectionRange = 10f; // Range within which the enemy detects the player
 
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        if (animator == null)
-        {
-            Debug.LogError("Animator component not found on the enemy GameObject.");
-        }
-    }
+    private bool playerDetected = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Player"))
+        // Perform raycast to detect the player
+        RaycastHit hit;
+        if (Physics.Raycast(playerDetectionPoint.position, transform.forward, out hit, detectionRange))
         {
-            // Start attack animation when colliding with the player
-            if (animator != null)
+            if (hit.collider.CompareTag("Player"))
             {
-                animator.SetBool("Attack", true);
+                // Player detected within detection range
+                playerDetected = true;
             }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
-            // Stop attack animation when the player exits the collider
-            if (animator != null)
-            {
-                animator.SetBool("Attack", false);
-            }
+            // Player not detected
+            playerDetected = false;
         }
+
+        // Update animator parameter based on player detection
+        animator.SetBool("Attack", playerDetected);
     }
 }
+
  /*   private void die()
     {
         // Check if animator is null to prevent NullReferenceException

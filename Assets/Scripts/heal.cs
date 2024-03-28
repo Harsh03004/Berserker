@@ -1,36 +1,47 @@
-
 using UnityEngine;
-using UnityEngine.UI;
 
 public class heal : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
-    public Image healthBar;
-    public float maxHealthValue = 100;
-    public float healAmount = 20;
-    public Health Phealth;
-    // Start is called before the first frame update
-   
+    public float healAmount = 20f;
+    public Health Phealth; // Reference to the player's Health component
 
-    // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-       
+        // Check if the player enters the trigger zone
         if (other.CompareTag("heal"))
         {
             Debug.Log("Healing");
-            if (health < maxHealth)
+
+            // Check if the Phealth reference is not null
+            if (Phealth != null)
             {
-                health = Mathf.Min(health + healAmount, maxHealth);
-                Debug.Log("Health increased to: " + health);
-                Destroy(other.gameObject);
-                Phealth.UpdateHealthBar();
+                Debug.Log("Health Script has been Correctly assigned");
+
+                // Check if the player's current health is less than maximum health
+                if (Phealth.CurrentHealth < Phealth.MaxHealth)
+                {
+                    Debug.Log("Checking if part");
+                    // Calculate the amount of health needed to reach the maximum
+                    float remainingHealth = Phealth.MaxHealth - Phealth.CurrentHealth;
+
+                    // Check if the healing amount exceeds the remaining health needed
+                    float actualHealAmount = Mathf.Min(remainingHealth, healAmount);
+
+                    // Heal the player and update health bar
+                    Phealth.heal(actualHealAmount);
+                    Debug.Log("Current Health after healing: " + Phealth.CurrentHealth);
+                    Phealth.UpdateHealthBar();
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    Debug.Log("Health is already at maximum.");
+                }
             }
             else
             {
-                Debug.Log("Health is already at maximum.");
-                Destroy(other.gameObject);
+                // Phealth reference is null, log an error
+                Debug.LogError("Phealth variable is not assigned.");
             }
         }
     }
