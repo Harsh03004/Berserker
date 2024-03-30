@@ -72,6 +72,7 @@ public class Movement : MonoBehaviour
         // Set the Attack_point's position to be aligned with the current lane's position
         Vector3 newPosition = lanePos[currentLaneIndex];
         newPosition.y = attackPoint.position.y; // Maintain the same height as before
+        newPosition.x = attackPoint.position.x;
         attackPoint.position = newPosition;
     }
 }

@@ -18,6 +18,13 @@ public class Enemy : MonoBehaviour
             {
                 // Player detected within detection range
                 playerDetected = true;
+                AttackManager.Instance.EnemyAttacked(gameObject);
+                Debug.Log("Enemy Attack time="+ AttackManager.Instance.enemyAttackTime);
+                /*GameObject[] ground = GameObject.FindGameObjectsWithTag("Obstacle");
+                foreach (GameObject go in ground)
+                {x  
+                    go.GetComponent<ObstacleMovement>().StopMovement();
+                }*/
             }
         }
         else
@@ -28,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         // Update animator parameter based on player detection
         animator.SetBool("Attack", playerDetected);
+        
     }
 }
 

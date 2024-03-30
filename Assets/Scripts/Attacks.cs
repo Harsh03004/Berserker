@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Attacks : MonoBehaviour
 {
     [SerializeField] Animator anim;
-    public Button button;
     public bool isAttacking = false;
     public LayerMask enemy_layers;
     public Transform Attack_point;
@@ -32,6 +30,10 @@ public class Attacks : MonoBehaviour
 
         //attack the enemy
         Collider[] hit_enemy = Physics.OverlapSphere(Attack_point.position, attack_range, enemy_layers);
+
+        // Call PlayerAttacked method in AttackManager to handle the player attack
+        
+        AttackManager.Instance.PlayerAttacked(gameObject);
         
     }
 

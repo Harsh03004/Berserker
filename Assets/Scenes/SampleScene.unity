@@ -1653,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 179882105}
     - target: {fileID: 6171573009575726961, guid: 801f36c0862f9b5468386147d1463f9d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6744827988806933362, guid: 801f36c0862f9b5468386147d1463f9d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1809,6 +1809,10 @@ PrefabInstance:
       propertyPath: button
       value: 
       objectReference: {fileID: 1434974790}
+    - target: {fileID: 258629619685737838, guid: b60143a316ac6ae47a60b6aeee15741d, type: 3}
+      propertyPath: attack_range
+      value: 3.43
+      objectReference: {fileID: 0}
     - target: {fileID: 512499143234972859, guid: b60143a316ac6ae47a60b6aeee15741d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1863,6 +1867,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1538688093855169895, guid: b60143a316ac6ae47a60b6aeee15741d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322381256366301313, guid: b60143a316ac6ae47a60b6aeee15741d, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3645077827419285443, guid: b60143a316ac6ae47a60b6aeee15741d, type: 3}
