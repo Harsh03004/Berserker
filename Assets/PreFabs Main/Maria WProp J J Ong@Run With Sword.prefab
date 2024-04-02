@@ -575,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 1798363742837669696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -958,8 +958,8 @@ Transform:
   m_LocalScale: {x: 5.8555803, y: 5.855578, z: 5.8555803}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4725869625889279550}
   - {fileID: 6420609149498370336}
+  - {fileID: 4725869625889279550}
   - {fileID: 7468251455674189637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -270.636, z: 0}
@@ -979,14 +979,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Zombie Reaction
-    Hit'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -1006,6 +999,10 @@ MonoBehaviour:
   rb: {fileID: 2813860934955067836}
   forceMag: 2
   speed: 25
+  asoure: {fileID: 0}
+  aclip: {fileID: 0}
+  Jumpforce: 2
+  isgrounded: 1
   lan1Cube: {fileID: 0}
   lan2Cube: {fileID: 0}
   lan3Cube: {fileID: 0}
@@ -1072,13 +1069,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 9013093982908104107}
-  button: {fileID: 0}
   isAttacking: 0
   enemy_layers:
     serializedVersion: 2
     m_Bits: 64
   Attack_point: {fileID: 0}
   attack_range: 2
+  asource: {fileID: 0}
+  aclip: {fileID: 0}
 --- !u!114 &781616712975631447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,6 +1105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healAmount: 20
   Phealth: {fileID: 781616712975631447}
+  aclip: {fileID: 0}
+  asource: {fileID: 0}
 --- !u!114 &862117769445017049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,6 +1121,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pHealth: {fileID: 781616712975631447}
   anim: {fileID: 9013093982908104107}
+  Eanim: {fileID: 0}
+  aclip: {fileID: 0}
+  aclip2: {fileID: 0}
+  aclip3: {fileID: 0}
+  asource: {fileID: 0}
+  playerDetectionPoint: {fileID: 0}
+  detectionRange: 10
+  isGrounded: 0
 --- !u!1 &2454473243202562383
 GameObject:
   m_ObjectHideFlags: 0

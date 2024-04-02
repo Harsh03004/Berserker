@@ -7,6 +7,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] float forceMag;
     [SerializeField] private float speed;
+    public AudioSource asoure;
+    public AudioClip aclip;
+    public float Jumpforce = 2.0f;
+    public bool isgrounded = true;
 
     [SerializeField] GameObject lan1Cube;
     [SerializeField] GameObject lan2Cube;
@@ -55,7 +59,14 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Vector3 vel = rb.velocity;
+            vel.y = 0;
+            rb.velocity = vel;
+            asoure.PlayOneShot(aclip);
             animController.SetBool("Jump", true);
+            rb.AddForce(new Vector3(0, Jumpforce, 0), ForceMode.Impulse);
+            isgrounded = false;
+
         }
         else if (!Input.GetKeyDown(KeyCode.Space))
         {

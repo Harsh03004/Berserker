@@ -13,7 +13,7 @@ public class ObstacleMovement : MonoBehaviour
         }
     }
 
-    public  void Move()
+    public void Move()
     {
         float movement = speed * Time.deltaTime;
         transform.Translate(Vector3.left * movement);

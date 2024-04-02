@@ -4,6 +4,8 @@ public class heal : MonoBehaviour
 {
     public float healAmount = 20f;
     public Health Phealth; // Reference to the player's Health component
+    public AudioClip aclip;
+    public AudioSource asource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,7 +13,7 @@ public class heal : MonoBehaviour
         if (other.CompareTag("heal"))
         {
             Debug.Log("Healing");
-
+            
             // Check if the Phealth reference is not null
             if (Phealth != null)
             {
@@ -20,6 +22,7 @@ public class heal : MonoBehaviour
                 // Check if the player's current health is less than maximum health
                 if (Phealth.CurrentHealth < Phealth.MaxHealth)
                 {
+                    asource.PlayOneShot(aclip);
                     Debug.Log("Checking if part");
                     // Calculate the amount of health needed to reach the maximum
                     float remainingHealth = Phealth.MaxHealth - Phealth.CurrentHealth;
@@ -36,6 +39,7 @@ public class heal : MonoBehaviour
                 else
                 {
                     Debug.Log("Health is already at maximum.");
+                    asource.PlayOneShot(aclip);
                 }
             }
             else

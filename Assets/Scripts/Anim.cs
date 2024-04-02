@@ -10,6 +10,7 @@ public class Anim : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animController.SetBool("Jump",true);
+
         }
         else if (!Input.GetKeyDown(KeyCode.Space))
         {

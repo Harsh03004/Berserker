@@ -25,7 +25,7 @@ public class Scoreing_system : MonoBehaviour
             if (obs != null)
             {
                 score = Mathf.RoundToInt(obs.distance);
-                Score.text = score.ToString();
+                Score.text = "Score:"+ score.ToString();
             }
         }
     }
@@ -37,10 +37,10 @@ public class Scoreing_system : MonoBehaviour
         if (score > highscore)
         {
             highscore = score;
-            Score.text = "Score:" + highscore.ToString();
+            Score.text = "High Score:" + highscore.ToString();
         }
 
         // Stop counting the score
-        
+
     }
 }

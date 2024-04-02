@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4008155813552842}
+  - component: {fileID: 1938210931855274046}
   - component: {fileID: 8072372228744617406}
   - component: {fileID: 7738168312465099377}
   m_Layer: 0
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.3735657, y: 5.6400948, z: 5.3735657}
+  m_LocalScale: {x: 0.2628905, y: 2.648927, z: 1.2618744}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4334132203307974}
@@ -36,6 +37,22 @@ Transform:
   - {fileID: 4376842309549012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1938210931855274046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280056767771472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6df290be1cc8004db4266d5ee575a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 20
+  Phealth: {fileID: 781616712975631447, guid: bd41a1c5344229847a3dc5ebe52e5327, type: 3}
+  aclip: {fileID: 8300000, guid: 350eab36e1ab39c4ba4ec1e4f7f2650b, type: 3}
+  asource: {fileID: 7114962808014572447, guid: e26e33d97a6040d449f86c6b7e91ff9d, type: 3}
 --- !u!65 &8072372228744617406
 BoxCollider:
   m_ObjectHideFlags: 0

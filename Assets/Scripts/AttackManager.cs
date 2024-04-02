@@ -4,7 +4,8 @@ using System;
 public class AttackManager : MonoBehaviour
 {
     public static AttackManager Instance { get; private set; }
-    [SerializeField] Animator anim;
+    [SerializeField] Animator Panim;
+    [SerializeField] Animator Eanim;
 
     // Public fields for GameObjects
     public GameObject playerGameObject;
@@ -63,12 +64,12 @@ public class AttackManager : MonoBehaviour
         if (playerAttackTime < enemyAttackTime)
         {
             Debug.Log("Player Attacked First");
-            anim.SetTrigger("Death");
+            Eanim.SetTrigger("DIE");
         }
         else if (playerAttackTime > enemyAttackTime)
         {
             Debug.Log("Enemy Attacked First");
-            anim.SetTrigger("Death");
+            Panim.SetTrigger("Death");
             Destroy(playerGameObject);
         }
         else

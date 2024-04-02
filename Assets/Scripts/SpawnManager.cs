@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-   [SerializeField] GameObject spawnPoint;
-   [SerializeField] List<GameObject> prefabsToSpawn;
-   public bool shouldspawns = true;
-   private void OnTriggerEnter(Collider other)
-   {
-        if(shouldspawns)
+    [SerializeField] GameObject spawnPoint;
+    [SerializeField] List<GameObject> prefabsToSpawn;
+    public bool shouldspawns = true;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (shouldspawns)
         {
             if (other.gameObject.tag == "Obstacle")
             {
@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
                 Instantiate(spawn, spawnPoint.transform.position, Quaternion.identity);
             }
         }
-   }
+    }
     public void stopspawn()
     {
         shouldspawns = false;
